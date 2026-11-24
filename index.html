@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="metaTitle">Reception of Al Thazad &amp; Hanna</title>
+
+    <!-- SEO Meta Descriptions -->
+    <meta name="description"
+        content="You are cordially invited to celebrate the reception of Al Thazad and Hanna Shoukath. Discover event details, venue location, countdown, and more.">
+    <meta name="keywords" content="Al Thazad and Hanna Shoukath Reception, Reception Invitation, Event Details">
+
+    <!-- Google Fonts: Editorial Serif (Prata) & Modern Sans (Space Grotesk) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="style.css?v=3.2">
+</head>
+
+<body>
+
+    <!-- ==================== WELCOME / COVER SCREEN ==================== -->
+    <div id="welcome-screen" class="welcome-overlay">
+        <div class="welcome-inner">
+            <span class="editorial-subtitle" id="welcomeSubtitle">THE RECEPTION INVITATION</span>
+            <h1 class="welcome-title" id="welcomeTitle">AL THAZAD &amp; HANNA</h1>
+            <span class="welcome-date-label" id="welcomeDate">07 . 12 . 2026</span>
+            <button id="btn-view-invite" class="btn-minimal-invert">
+                VIEW INVITATION
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+    <div id="main-content" class="content-hidden">
+
+        <!-- ==================== STICKY HEADER ==================== -->
+        <header id="main-header">
+            <div class="header-container">
+                <a href="#welcome-screen" class="logo-branding" id="headerLogo">A & H</a>
+                <button id="menu-toggle" class="mobile-menu-btn" aria-label="Toggle Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                <nav id="nav-menu">
+                    <ul>
+                        <li><a href="#couple" class="nav-link">Couple</a></li>
+                        <li><a href="#events" class="nav-link">Events</a></li>
+                        <li><a href="#venue" class="nav-link">Venue</a></li>
+                        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- ==================== FLOATING WIDGETS ==================== -->
+        <div class="floating-controls">
+            <button id="music-toggle" class="floating-btn music-btn" aria-label="Toggle Music"
+                title="Mute / Play Music">
+                <i class="fa-solid fa-compact-disc disc-spinning" id="musicIcon"></i>
+            </button>
+            <button id="back-to-top" class="floating-btn back-to-top-btn" aria-label="Back to Top" title="Back to Top">
+                <i class="fa-solid fa-arrow-up"></i>
+            </button>
+        </div>
+
+        <!-- Background Music -->
+        <audio id="bg-music" src="images/bg-music.mp3" loop preload="auto"></audio>
+
+        <!-- ==================== SECTION 1: COUPLE ==================== -->
+        <section id="couple" class="section-padding couple-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="editorial-label" id="unionLabel">THE UNION</span>
+                    <h2 class="section-title" id="unionTitle">AL THAZAD &amp; HANNA</h2>
+                    <p class="section-intro" id="unionIntro">A love that has blossomed through the years - two hearts,
+                        one beautiful destiny, and a lifetime of dreams waiting to unfold together.</p>
+                    <div class="thin-divider"></div>
+                </div>
+
+                <div class="couple-single-showcase reveal">
+                    <div class="couple-single-img-wrap">
+                        <img src="images/IMG_0066.JPG.jpeg" alt="Al Thazad &amp; Hanna" id="couplePhoto" loading="lazy">
+                    </div>
+                    <div class="couple-single-details">
+                        <span class="couple-single-tag">THE GROOM &amp; THE BRIDE</span>
+                        <h3 class="couple-single-names">Al Thazad &amp; Hanna Shoukath</h3>
+                        <p class="couple-single-quote">“A love that has blossomed through the years - two hearts, one
+                            beautiful destiny, and a lifetime of dreams waiting to unfold together.”</p>
+
+                        <div class="couple-parents-grid">
+                            <div class="parents-meta-item">
+                                <span class="parents-label">Groom's Parents</span>
+                                <p class="parents-names">Son of <strong id="groomParents">Mr. Abdul Razak Thottungal
+                                        &amp; Mrs. Fathima Suhra Melethil</strong></p>
+                            </div>
+                            <div class="parents-meta-item">
+                                <span class="parents-label">Bride's Parents</span>
+                                <p class="parents-names">Daughter of <strong id="brideParents">Mr. T A Shareef &amp; G/d
+                                        of late K M Mohammedali</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 2: EVENT DETAILS ==================== -->
+        <section id="events" class="section-padding events-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="editorial-label" id="scheduleLabel">THE CELEBRATION</span>
+                    <h2 class="section-title" id="scheduleTitle">EVENT SCHEDULE</h2>
+                    <div class="thin-divider"></div>
+                </div>
+
+                <div class="events-grid" id="eventsGrid">
+                    <!-- Populated dynamically from data.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 3: COUNTDOWN TIMER ==================== -->
+        <section class="section-padding countdown-section">
+            <div class="container">
+                <div class="countdown-wrapper reveal">
+                    <span class="countdown-title" id="countdownTitle">TIME UNTIL THE RECEPTION</span>
+                    <div id="countdown-timer" class="countdown-grid-minimal">
+                        <div class="countdown-box">
+                            <span id="days" class="time-digit">00</span>
+                            <span class="time-label">DAYS</span>
+                        </div>
+                        <div class="countdown-box">
+                            <span id="hours" class="time-digit">00</span>
+                            <span class="time-label">HOURS</span>
+                        </div>
+                        <div class="countdown-box">
+                            <span id="minutes" class="time-digit">00</span>
+                            <span class="time-label">MINS</span>
+                        </div>
+                        <div class="countdown-box">
+                            <span id="seconds" class="time-digit">00</span>
+                            <span class="time-label">SECS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 4: VENUE MAP ==================== -->
+        <section id="venue" class="section-padding venue-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="editorial-label" id="locationLabel">THE LOCATION</span>
+                    <h2 class="section-title" id="locationTitle">THE VENUE</h2>
+                    <div class="thin-divider"></div>
+                </div>
+
+                <div class="venue-grid reveal">
+                    <div class="venue-card-details">
+                        <h3 id="venueName">ARANYAKA VANANDHAR</h3>
+                        <p class="venue-address" id="venueAddress">Aloor, Thrithala, Palakkad District</p>
+                        <p class="venue-directions-text" id="directionsText">
+                            Aranyaka Vanandhar is situated in Aloor, Thrithala, Palakkad District. Parking facilities
+                            are available on-site. Guests are requested to arrive in time for the Reception ceremony.
+                        </p>
+                        <div class="venue-buttons">
+                            <a href="#" id="navigateBtn" target="_blank" rel="noopener noreferrer"
+                                class="btn-minimal-invert">
+                                <span id="getDirectionsLabel">GET DIRECTIONS</span> <i
+                                    class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                            <button id="btn-copy-address" class="btn-minimal-outline">
+                                <span id="copyAddressLabel">COPY ADDRESS</span> <i class="fa-solid fa-copy"></i>
+                            </button>
+                        </div>
+                        <div id="copy-toast" class="toast-hidden">Address copied to clipboard.</div>
+                    </div>
+
+                    <div class="venue-map-wrapper" id="mapEmbedWrapper">
+                        <!-- Populated dynamically from data.js -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 5: GALLERY ==================== -->
+        <section id="gallery" class="section-padding gallery-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="editorial-label" id="galleryLabel">MOMENTS</span>
+                    <h2 class="section-title" id="galleryTitle">THE GALLERY</h2>
+                    <div class="thin-divider"></div>
+                </div>
+
+                <div class="gallery-minimal-grid" id="galleryGrid">
+                    <!-- Populated dynamically from data.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== FOOTER ==================== -->
+        <footer>
+            <div class="footer-container">
+                <h2 class="footer-monogram" id="footerLogo">A + H</h2>
+                <p class="footer-announcement" id="footerAnnouncement">WEDDING RECEPTION OF AL THAZAD &amp; HANNA
+                    SHOUKATH</p>
+
+                <div class="footer-contacts">
+                    <div class="footer-phone-chips" id="footerPhoneChips">
+                        <div class="footer-phone-item">
+                            <a href="tel:+918891298703" class="footer-phone-btn">
+                                <i class="fa-solid fa-phone"></i> +91 88912 98703
+                            </a>
+                            <a href="https://wa.me/918891298703" target="_blank" rel="noopener noreferrer"
+                                class="footer-wa-icon" title="Chat on WhatsApp" aria-label="WhatsApp +91 88912 98703">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                        </div>
+                        <div class="footer-phone-item">
+                            <a href="tel:+919656619166" class="footer-phone-btn">
+                                <i class="fa-solid fa-phone"></i> +91 96566 19166
+                            </a>
+                            <a href="https://wa.me/919656619166" target="_blank" rel="noopener noreferrer"
+                                class="footer-wa-icon" title="Chat on WhatsApp" aria-label="WhatsApp +91 96566 19166">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="copyright-text" id="copyrightText">&copy; 2026 ALL RIGHTS RESERVED.</p>
+            </div>
+        </footer>
+
+    </div> <!-- /#main-content -->
+
+    <!-- ==================== IMAGE LIGHTBOX MODAL ==================== -->
+    <div id="lightbox-modal" class="lightbox-overlay modal-hidden" aria-hidden="true" role="dialog">
+        <button id="lightbox-close" class="lightbox-close-btn" aria-label="Close Lightbox">&times;</button>
+
+        <button id="lightbox-prev" class="lightbox-nav-btn prev" aria-label="Previous Image">
+            <i class="fa-solid fa-arrow-left-long"></i>
+        </button>
+
+        <div class="lightbox-content-wrapper">
+            <img id="lightbox-img" src="" alt="Expanded Gallery Media">
+            <div id="lightbox-caption" class="lightbox-caption">CAPTION</div>
+        </div>
+
+        <button id="lightbox-next" class="lightbox-nav-btn next" aria-label="Next Image">
+            <i class="fa-solid fa-arrow-right-long"></i>
+        </button>
+    </div>
+
+    <!-- Main JavaScript Link -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
