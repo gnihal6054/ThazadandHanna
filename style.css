@@ -1572,14 +1572,14 @@ footer {
     }
 
     .countdown-grid-minimal {
-        gap: 8px;
+        gap: clamp(14px, 4.5vw, 28px);
     }
 
     .countdown-box {
-        min-width: 65px;
-        padding: 10px 4px;
-        border: 1px solid var(--color-border-light);
-        background: rgba(0, 0, 0, 0.015);
+        min-width: auto;
+        padding: 0;
+        border: none;
+        background: transparent;
     }
 
     .time-digit {
