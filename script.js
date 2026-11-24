@@ -614,8 +614,8 @@ function initAudioPlayer() {
 
     if (!audio || !musicToggle) return;
 
-    // Very light, gentle soothing ambient background volume (15%)
-    audio.volume = 0.15;
+    // Ultra-light, whisper-soft soothing ambient background volume (5%)
+    audio.volume = 0.05;
     let isPlaying = false;
 
     window.startBackgroundMusic = function() {
