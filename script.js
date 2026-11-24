@@ -5,7 +5,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     console.log("basic2 template DOM Loaded - Processing data...");
-    
+
     // 1. Process date/time configurations
     processWeddingData();
 
@@ -26,103 +26,103 @@ document.addEventListener("DOMContentLoaded", () => {
    DATE & TIME PRE-PROCESSOR
    ========================================== */
 function processWeddingData() {
-  const data = window.weddingData;
-  if (!data || !data.event) return;
+    const data = window.weddingData;
+    if (!data || !data.event) return;
 
-  const dateVal = data.event.date || "2026-10-10";
-  const timeVal = data.event.time || "04:30 PM";
+    const dateVal = data.event.date || "2026-10-10";
+    const timeVal = data.event.time || "04:30 PM";
 
-  // Helper to convert 12h time ("04:30 PM") to 24h format ("16:30:00")
-  function parseTime24h(t) {
-    const match = t.match(/^(\d+):(\d+)\s*(AM|PM)$/i);
-    if (!match) return "16:30:00";
-    let hr = parseInt(match[1]);
-    const min = match[2];
-    const ampm = match[3].toUpperCase();
-    if (ampm === "PM" && hr < 12) hr += 12;
-    if (ampm === "AM" && hr === 12) hr = 0;
-    return `${String(hr).padStart(2, '0')}:${min}:00`;
-  }
+    // Helper to convert 12h time ("04:30 PM") to 24h format ("16:30:00")
+    function parseTime24h(t) {
+        const match = t.match(/^(\d+):(\d+)\s*(AM|PM)$/i);
+        if (!match) return "16:30:00";
+        let hr = parseInt(match[1]);
+        const min = match[2];
+        const ampm = match[3].toUpperCase();
+        if (ampm === "PM" && hr < 12) hr += 12;
+        if (ampm === "AM" && hr === 12) hr = 0;
+        return `${String(hr).padStart(2, '0')}:${min}:00`;
+    }
 
-  // Helper to format date to human readable form
-  function formatLocalDate(dStr) {
-    const dateObj = new Date(dStr + "T00:00:00");
-    if (isNaN(dateObj)) return "Saturday, October 10, 2026";
-    return dateObj.toLocaleDateString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  }
+    // Helper to format date to human readable form
+    function formatLocalDate(dStr) {
+        const dateObj = new Date(dStr + "T00:00:00");
+        if (isNaN(dateObj)) return "Saturday, October 10, 2026";
+        return dateObj.toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    }
 
-  const time24h = parseTime24h(timeVal);
+    const time24h = parseTime24h(timeVal);
 
-  // Auto-fill calculated fields for countdown and calendar invites
-  data.event.dateTimeString = `${dateVal}T${time24h}`;
-  data.event.dateFormatted = formatLocalDate(dateVal);
+    // Auto-fill calculated fields for countdown and calendar invites
+    data.event.dateTimeString = `${dateVal}T${time24h}`;
+    data.event.dateFormatted = formatLocalDate(dateVal);
 }
 
 /* ==========================================
    DYNAMIC DATA RENDERING
    ========================================== */
 function renderData() {
-  const data = window.weddingData;
-  if (!data) return;
+    const data = window.weddingData;
+    if (!data) return;
 
-  // Title
-  const metaTitle = document.getElementById('metaTitle');
-  if (metaTitle) metaTitle.innerText = `Reception of ${data.couple.groom} & ${data.couple.bride}`;
+    // Title
+    const metaTitle = document.getElementById('metaTitle');
+    if (metaTitle) metaTitle.innerText = `Reception of ${data.couple.groom} & ${data.couple.bride}`;
 
-  // Welcome page
-  const welcomeSubtitle = document.getElementById('welcomeSubtitle');
-  if (welcomeSubtitle) welcomeSubtitle.innerText = data.labels.subtitle;
+    // Welcome page
+    const welcomeSubtitle = document.getElementById('welcomeSubtitle');
+    if (welcomeSubtitle) welcomeSubtitle.innerText = data.labels.subtitle;
 
-  const welcomeTitle = document.getElementById('welcomeTitle');
-  if (welcomeTitle) welcomeTitle.innerHTML = `${data.couple.groom} &amp; ${data.couple.bride}`;
+    const welcomeTitle = document.getElementById('welcomeTitle');
+    if (welcomeTitle) welcomeTitle.innerHTML = `${data.couple.groom} &amp; ${data.couple.bride}`;
 
-  const welcomeDate = document.getElementById('welcomeDate');
-  if (welcomeDate) {
-    // format to dot structure e.g. 07 . 12 . 2026
-    const parts = data.event.date.split('-');
-    let dateText = `${parts[2]} . ${parts[1]} . ${parts[0]}`;
-    if (data.event.hijriDate) {
-      dateText += ` • ${data.event.hijriDate.toUpperCase()}`;
+    const welcomeDate = document.getElementById('welcomeDate');
+    if (welcomeDate) {
+        // format to dot structure e.g. 07 . 12 . 2026
+        const parts = data.event.date.split('-');
+        let dateText = `${parts[2]} . ${parts[1]} . ${parts[0]}`;
+        if (data.event.hijriDate) {
+            dateText += ` • ${data.event.hijriDate.toUpperCase()}`;
+        }
+        welcomeDate.innerText = dateText;
     }
-    welcomeDate.innerText = dateText;
-  }
 
-  // Header Logo
-  const headerLogo = document.getElementById('headerLogo');
-  if (headerLogo) headerLogo.innerText = data.couple.monogram;
+    // Header Logo
+    const headerLogo = document.getElementById('headerLogo');
+    if (headerLogo) headerLogo.innerText = data.couple.monogram;
 
-  // Couple titles & photo
-  const unionTitle = document.getElementById('unionTitle');
-  if (unionTitle) unionTitle.innerHTML = `${data.couple.groom} &amp; ${data.couple.bride}`;
+    // Couple titles & photo
+    const unionTitle = document.getElementById('unionTitle');
+    if (unionTitle) unionTitle.innerHTML = `${data.couple.groom} &amp; ${data.couple.bride}`;
 
-  const couplePhoto = document.getElementById('couplePhoto');
-  if (couplePhoto && data.couple.photo) couplePhoto.src = data.couple.photo;
+    const couplePhoto = document.getElementById('couplePhoto');
+    if (couplePhoto && data.couple.photo) couplePhoto.src = data.couple.photo;
 
-  const groomParents = document.getElementById('groomParents');
-  if (groomParents) groomParents.innerText = data.couple.groomParents;
+    const groomParents = document.getElementById('groomParents');
+    if (groomParents) groomParents.innerText = data.couple.groomParents;
 
-  const brideParents = document.getElementById('brideParents');
-  if (brideParents) brideParents.innerText = data.couple.brideParents;
+    const brideParents = document.getElementById('brideParents');
+    if (brideParents) brideParents.innerText = data.couple.brideParents;
 
-  // Venue details
-  const venueName = document.getElementById('venueName');
-  if (venueName) venueName.innerText = data.event.venueName;
+    // Venue details
+    const venueName = document.getElementById('venueName');
+    if (venueName) venueName.innerText = data.event.venueName;
 
-  const venueAddress = document.getElementById('venueAddress');
-  if (venueAddress) venueAddress.innerText = data.event.venueAddress;
+    const venueAddress = document.getElementById('venueAddress');
+    if (venueAddress) venueAddress.innerText = data.event.venueAddress;
 
-  const navigateBtn = document.getElementById('navigateBtn');
-  if (navigateBtn) navigateBtn.href = data.event.mapDirectionsUrl;
+    const navigateBtn = document.getElementById('navigateBtn');
+    if (navigateBtn) navigateBtn.href = data.event.mapDirectionsUrl;
 
-  // Map Iframe Embed
-  const mapEmbedWrapper = document.getElementById('mapEmbedWrapper');
-  if (mapEmbedWrapper) {
-    mapEmbedWrapper.innerHTML = `
+    // Map Iframe Embed
+    const mapEmbedWrapper = document.getElementById('mapEmbedWrapper');
+    if (mapEmbedWrapper) {
+        mapEmbedWrapper.innerHTML = `
       <iframe 
           src="${data.event.mapEmbedUrl}" 
           width="100%" 
@@ -134,12 +134,12 @@ function renderData() {
           title="Wedding Location Map">
       </iframe>
     `;
-  }
+    }
 
-  // Itinerary Grid
-  const eventsGrid = document.getElementById('eventsGrid');
-  if (eventsGrid && data.itinerary) {
-    eventsGrid.innerHTML = data.itinerary.map(item => `
+    // Itinerary Grid
+    const eventsGrid = document.getElementById('eventsGrid');
+    if (eventsGrid && data.itinerary) {
+        eventsGrid.innerHTML = data.itinerary.map(item => `
       <div class="event-card reveal">
           <div class="event-header">
               <span class="event-num">${item.num}</span>
@@ -169,12 +169,12 @@ function renderData() {
           </div>
       </div>
     `).join('');
-  }
+    }
 
-  // Gallery Minimal Grid
-  const galleryGrid = document.getElementById('galleryGrid');
-  if (galleryGrid && data.gallery) {
-    galleryGrid.innerHTML = data.gallery.map((item, index) => `
+    // Gallery Minimal Grid
+    const galleryGrid = document.getElementById('galleryGrid');
+    if (galleryGrid && data.gallery) {
+        galleryGrid.innerHTML = data.gallery.map((item, index) => `
       <div class="gallery-item reveal" data-index="${index}">
           <img src="${item.src}" alt="${item.caption}" loading="lazy">
           <div class="img-overlay">
@@ -182,15 +182,15 @@ function renderData() {
           </div>
       </div>
     `).join('');
-  }
+    }
 
-  // Footer Contact Numbers
-  const footerPhoneChips = document.getElementById('footerPhoneChips');
-  if (footerPhoneChips && data.phoneNumbers) {
-    footerPhoneChips.innerHTML = data.phoneNumbers.map(phone => {
-      const cleanNum = phone.replace(/[\s()-]/g, '');
-      const waNum = cleanNum.startsWith('+') ? cleanNum.slice(1) : cleanNum;
-      return `
+    // Footer Contact Numbers
+    const footerPhoneChips = document.getElementById('footerPhoneChips');
+    if (footerPhoneChips && data.phoneNumbers) {
+        footerPhoneChips.innerHTML = data.phoneNumbers.map(phone => {
+            const cleanNum = phone.replace(/[\s()-]/g, '');
+            const waNum = cleanNum.startsWith('+') ? cleanNum.slice(1) : cleanNum;
+            return `
         <div class="footer-phone-item">
             <a href="tel:${cleanNum}" class="footer-phone-btn">
                 <i class="fa-solid fa-phone"></i> ${phone}
@@ -200,73 +200,73 @@ function renderData() {
             </a>
         </div>
       `;
-    }).join('');
-  }
-
-  // Labels
-  if (data.labels) {
-    const unionLabel = document.getElementById('unionLabel');
-    if (unionLabel) unionLabel.innerText = data.labels.unionLabel;
-
-    const unionIntro = document.getElementById('unionIntro');
-    if (unionIntro) unionIntro.innerText = data.labels.unionIntro;
-
-    const scheduleLabel = document.getElementById('scheduleLabel');
-    if (scheduleLabel) scheduleLabel.innerText = data.labels.scheduleLabel;
-
-    const scheduleTitle = document.getElementById('scheduleTitle');
-    if (scheduleTitle) scheduleTitle.innerText = data.labels.scheduleTitle;
-
-    const countdownTitle = document.getElementById('countdownTitle');
-    if (countdownTitle) countdownTitle.innerText = data.labels.countdownTitle;
-
-    const locationLabel = document.getElementById('locationLabel');
-    if (locationLabel) locationLabel.innerText = data.labels.locationLabel;
-
-    const locationTitle = document.getElementById('locationTitle');
-    if (locationTitle) locationTitle.innerText = data.labels.locationTitle;
-
-    const directionsText = document.getElementById('directionsText');
-    if (directionsText) directionsText.innerText = data.labels.directionsText;
-
-    const getDirectionsLabel = document.getElementById('getDirectionsLabel');
-    if (getDirectionsLabel) getDirectionsLabel.innerText = data.labels.getDirectionsLabel;
-
-    const copyAddressLabel = document.getElementById('copyAddressLabel');
-    if (copyAddressLabel) copyAddressLabel.innerText = data.labels.copyAddressLabel;
-
-    const toastCopiedText = document.getElementById('copy-toast');
-    if (toastCopiedText) toastCopiedText.innerText = data.labels.toastCopiedText;
-
-    const galleryLabel = document.getElementById('galleryLabel');
-    if (galleryLabel) galleryLabel.innerText = data.labels.galleryLabel;
-
-    const galleryTitle = document.getElementById('galleryTitle');
-    if (galleryTitle) galleryTitle.innerText = data.labels.galleryTitle;
-
-    const contactsLabel = document.getElementById('contactsLabel');
-    if (contactsLabel) contactsLabel.innerText = data.labels.contactsLabel;
-
-    const contactsTitle = document.getElementById('contactsTitle');
-    if (contactsTitle) contactsTitle.innerText = data.labels.contactsTitle;
-
-    const groomRole = document.getElementById('groomRole');
-    if (groomRole) groomRole.innerText = data.labels.groomRole;
-
-    const brideRole = document.getElementById('brideRole');
-    if (brideRole) brideRole.innerText = data.labels.brideRole;
-
-    const footerLogo = document.getElementById('footerLogo');
-    if (footerLogo) footerLogo.innerText = data.couple.monogram;
-
-    const footerAnnouncement = document.getElementById('footerAnnouncement');
-    if (footerAnnouncement) footerAnnouncement.innerText = data.labels.footerAnnouncement;
-
-    const copyrightText = document.getElementById('copyrightText');
-    if (copyrightText && data.couple) {
-      copyrightText.innerHTML = `&copy; 2026 ${data.couple.groom.toUpperCase()} &amp; ${data.couple.bride.toUpperCase()}. ALL RIGHTS RESERVED.`;
+        }).join('');
     }
-  }
+
+    // Labels
+    if (data.labels) {
+        const unionLabel = document.getElementById('unionLabel');
+        if (unionLabel) unionLabel.innerText = data.labels.unionLabel;
+
+        const unionIntro = document.getElementById('unionIntro');
+        if (unionIntro) unionIntro.innerText = data.labels.unionIntro;
+
+        const scheduleLabel = document.getElementById('scheduleLabel');
+        if (scheduleLabel) scheduleLabel.innerText = data.labels.scheduleLabel;
+
+        const scheduleTitle = document.getElementById('scheduleTitle');
+        if (scheduleTitle) scheduleTitle.innerText = data.labels.scheduleTitle;
+
+        const countdownTitle = document.getElementById('countdownTitle');
+        if (countdownTitle) countdownTitle.innerText = data.labels.countdownTitle;
+
+        const locationLabel = document.getElementById('locationLabel');
+        if (locationLabel) locationLabel.innerText = data.labels.locationLabel;
+
+        const locationTitle = document.getElementById('locationTitle');
+        if (locationTitle) locationTitle.innerText = data.labels.locationTitle;
+
+        const directionsText = document.getElementById('directionsText');
+        if (directionsText) directionsText.innerText = data.labels.directionsText;
+
+        const getDirectionsLabel = document.getElementById('getDirectionsLabel');
+        if (getDirectionsLabel) getDirectionsLabel.innerText = data.labels.getDirectionsLabel;
+
+        const copyAddressLabel = document.getElementById('copyAddressLabel');
+        if (copyAddressLabel) copyAddressLabel.innerText = data.labels.copyAddressLabel;
+
+        const toastCopiedText = document.getElementById('copy-toast');
+        if (toastCopiedText) toastCopiedText.innerText = data.labels.toastCopiedText;
+
+        const galleryLabel = document.getElementById('galleryLabel');
+        if (galleryLabel) galleryLabel.innerText = data.labels.galleryLabel;
+
+        const galleryTitle = document.getElementById('galleryTitle');
+        if (galleryTitle) galleryTitle.innerText = data.labels.galleryTitle;
+
+        const contactsLabel = document.getElementById('contactsLabel');
+        if (contactsLabel) contactsLabel.innerText = data.labels.contactsLabel;
+
+        const contactsTitle = document.getElementById('contactsTitle');
+        if (contactsTitle) contactsTitle.innerText = data.labels.contactsTitle;
+
+        const groomRole = document.getElementById('groomRole');
+        if (groomRole) groomRole.innerText = data.labels.groomRole;
+
+        const brideRole = document.getElementById('brideRole');
+        if (brideRole) brideRole.innerText = data.labels.brideRole;
+
+        const footerLogo = document.getElementById('footerLogo');
+        if (footerLogo) footerLogo.innerText = data.couple.monogram;
+
+        const footerAnnouncement = document.getElementById('footerAnnouncement');
+        if (footerAnnouncement) footerAnnouncement.innerText = data.labels.footerAnnouncement;
+
+        const copyrightText = document.getElementById('copyrightText');
+        if (copyrightText && data.couple) {
+            copyrightText.innerHTML = `&copy; 2026 ${data.couple.groom.toUpperCase()} &amp; ${data.couple.bride.toUpperCase()}. ALL RIGHTS RESERVED.`;
+        }
+    }
 }
 
 /* ==========================================
@@ -291,7 +291,7 @@ function initWelcomeScreen() {
             window.startBackgroundMusic();
         }
     });
-    
+
     document.body.style.overflow = "hidden"; // lock initially
 }
 
@@ -313,7 +313,7 @@ function initStickyHeader() {
         } else {
             header.classList.remove("scrolled");
         }
-        
+
         if (backToTopBtn) {
             if (window.scrollY > 350) {
                 backToTopBtn.classList.add("visible");
@@ -322,7 +322,7 @@ function initStickyHeader() {
             }
         }
     });
-    
+
     if (backToTopBtn) {
         backToTopBtn.addEventListener("click", () => {
             window.scrollTo({
@@ -348,18 +348,18 @@ function initStickyHeader() {
     }
 
     navLinks.forEach(link => {
-        link.addEventListener("click", function(e) {
+        link.addEventListener("click", function (e) {
             e.preventDefault();
             const targetId = this.getAttribute("href");
             const targetSection = document.querySelector(targetId);
-            
+
             if (targetSection) {
                 if (menuToggle) menuToggle.classList.remove("active");
                 if (navMenu) navMenu.classList.remove("active");
-                
+
                 const headerHeight = header.offsetHeight;
                 const targetPos = targetSection.offsetTop - headerHeight;
-                
+
                 window.scrollTo({
                     top: targetPos,
                     behavior: "smooth"
@@ -393,7 +393,7 @@ function initCountdown() {
     function updateCountdown() {
         const now = new Date().getTime();
         const difference = targetDate - now;
-        
+
         if (difference <= 0) {
             if (countdownDays) countdownDays.innerText = "00";
             if (countdownHours) countdownHours.innerText = "00";
@@ -401,18 +401,18 @@ function initCountdown() {
             if (countdownSeconds) countdownSeconds.innerText = "00";
             return;
         }
-        
+
         const d = Math.floor(difference / (1000 * 60 * 60 * 24));
         const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
         const s = Math.floor((difference % (1000 * 60)) / 1000);
-        
+
         if (countdownDays) countdownDays.innerText = String(d).padStart(2, '0');
         if (countdownHours) countdownHours.innerText = String(h).padStart(2, '0');
         if (countdownMinutes) countdownMinutes.innerText = String(m).padStart(2, '0');
         if (countdownSeconds) countdownSeconds.innerText = String(s).padStart(2, '0');
     }
-    
+
     updateCountdown();
     setInterval(updateCountdown, 1000);
 }
@@ -428,7 +428,7 @@ function initAddressCopyButton() {
 
     btnCopyAddress.addEventListener("click", () => {
         const address = (window.weddingData && window.weddingData.event && window.weddingData.event.venueAddress) || "12 Park Avenue, Crescent Heights, New York, NY 10016";
-        
+
         navigator.clipboard.writeText(address).then(() => {
             showCopyNotification();
         }).catch(() => {
@@ -452,7 +452,7 @@ function initAddressCopyButton() {
         if (!copyToast) return;
         copyToast.classList.add("toast-visible");
         copyToast.classList.remove("toast-hidden");
-        
+
         setTimeout(() => {
             copyToast.classList.remove("toast-visible");
             copyToast.classList.add("toast-hidden");
@@ -491,13 +491,13 @@ function initLightboxGallery() {
 
         currentGalleryIndex = parseInt(index);
         const item = data.gallery[currentGalleryIndex];
-        
+
         if (lightboxImg) {
             lightboxImg.src = item.src;
             lightboxImg.style.opacity = 1;
         }
         if (lightboxCaption) lightboxCaption.innerText = item.caption.toUpperCase();
-        
+
         if (lightboxModal) {
             lightboxModal.classList.remove("modal-hidden");
             lightboxModal.setAttribute("aria-hidden", "false");
@@ -571,14 +571,14 @@ function initLightboxGallery() {
    ========================================== */
 function setupScrollAnimations() {
     const revealElements = document.querySelectorAll(".reveal");
-    
+
     if ("IntersectionObserver" in window) {
         const observerOptions = {
             root: null,
             rootMargin: "0px 0px -60px 0px",
             threshold: 0.1
         };
-        
+
         const scrollObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -587,7 +587,7 @@ function setupScrollAnimations() {
                 }
             });
         }, observerOptions);
-        
+
         revealElements.forEach(el => scrollObserver.observe(el));
     } else {
         const triggerDepth = (window.innerHeight / 10) * 8.5;
@@ -615,10 +615,10 @@ function initAudioPlayer() {
     if (!audio || !musicToggle) return;
 
     // Ultra-light, whisper-soft soothing ambient background volume (5%)
-    audio.volume = 0.05;
+    audio.volume = 0.01;
     let isPlaying = false;
 
-    window.startBackgroundMusic = function() {
+    window.startBackgroundMusic = function () {
         if (!isPlaying) {
             audio.play().then(() => {
                 isPlaying = true;
