@@ -614,8 +614,8 @@ function initAudioPlayer() {
 
     if (!audio || !musicToggle) return;
 
-    // Soothing ambient volume (0.35)
-    audio.volume = 0.35;
+    // Very light, gentle soothing ambient background volume (15%)
+    audio.volume = 0.15;
     let isPlaying = false;
 
     window.startBackgroundMusic = function() {
